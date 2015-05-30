@@ -14,6 +14,10 @@ class ActivationCallRequest < ActiveRecord::Base
     requests.count >= 1
   end
 
+  def previously_called?
+    attempt.to_i >= 1 ? "YES" : "NO"
+  end
+
   def validated_already_called
     errors.add(:domain, "Validation Failed Previously Called.") if requests_exist?
   end

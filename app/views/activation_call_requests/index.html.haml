@@ -11,6 +11,7 @@
             %th Latitude
             %th Attempt
             %th Address
+            %th Previously Called
             %th Actions
         %tbody
           - @activation_call_requests.each do |activation_call_request|
@@ -21,6 +22,7 @@
               %td= activation_call_request.latitude
               %td= activation_call_request.attempt
               %td= activation_call_request.address
+              %td= activation_call_request.previously_called?
               %td
                 = link_to activation_call_request, class: 'btn btn-primary btn-xs' do
                   <i class='glyphicon glyphicon-eye-close'></i> Show
