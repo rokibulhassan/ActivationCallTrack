@@ -23,3 +23,6 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'factory_girl_rails'
 end
+
+gem 'grape'
+gem 'hashie-forbidden_attributes'

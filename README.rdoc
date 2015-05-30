@@ -1,28 +1,16 @@
 == README
+===============================API Documentation======================================
+ i)  Authentication
+       Method: Post
+       URL:  http://localhost:3000/api/v1/users/authenticate.json
+       Parameters:     email: your@email.com, password: yourpassword
+       you will get an authentication token form here.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+  ii)  Create ActivationCallRequest
+       Method: Post
+       URL:  http://localhost:3000/api/v1/activation_call_requests.json?auth_token=your_auth_token
+       Parameters: imi_number: "IMI Number",  cell_number: "01532456547",  longitude: "32.43434565", latitude: "32.43434565"
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+ iii) Return all ActivationCallRequest
+      Method: Get
+      URL: http://localhost:3000/api/v1/activation_call_requests.json?auth_token=your_auth_token
