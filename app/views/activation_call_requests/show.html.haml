@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Imi number:
+  = @activation_call_request.imi_number
+%p
+  %b Cell number:
+  = @activation_call_request.cell_number
+%p
+  %b Longitude:
+  = @activation_call_request.longitude
+%p
+  %b Latitude:
+  = @activation_call_request.latitude
+%p
+  %b Attempt:
+  = @activation_call_request.attempt
+%p
+  %b Address:
+  = @activation_call_request.address
+
+= link_to 'Edit', edit_activation_call_request_path(@activation_call_request)
+\|
+= link_to 'Back', activation_call_requests_path

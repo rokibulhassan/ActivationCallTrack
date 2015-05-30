@@ -1,0 +1,13 @@
+= simple_form_for(@activation_call_request) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :imi_number
+    = f.input :cell_number
+    = f.input :longitude
+    = f.input :latitude
+    = f.input :attempt
+    = f.input :address
+
+  .form-actions
+    = f.button :submit

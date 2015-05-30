@@ -1,0 +1,32 @@
+.row
+  .col-lg-12
+    %h1 Activation Call Requests
+    .table-responsive
+      %table.table.table-bordered.table-hover.data-table
+        %thead
+          %tr
+            %th Imi number
+            %th Cell number
+            %th Longitude
+            %th Latitude
+            %th Attempt
+            %th Address
+            %th Actions
+        %tbody
+          - @activation_call_requests.each do |activation_call_request|
+            %tr
+              %td= activation_call_request.imi_number
+              %td= activation_call_request.cell_number
+              %td= activation_call_request.longitude
+              %td= activation_call_request.latitude
+              %td= activation_call_request.attempt
+              %td= activation_call_request.address
+              %td
+                = link_to activation_call_request, class: 'btn btn-primary btn-xs' do
+                  <i class='glyphicon glyphicon-eye-close'></i> Show
+                = link_to edit_activation_call_request_path(activation_call_request), class: 'btn btn-primary btn-xs' do
+                  <i class='glyphicon glyphicon-wrench'></i> Edit
+                = link_to activation_call_request, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger btn-xs' do
+                  <i class='glyphicon glyphicon-trash'></i> Delete
+
+    = link_to 'New Activation call request', new_activation_call_request_path, :class => "btn btn-sm btn-primary"
