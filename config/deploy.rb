@@ -13,14 +13,14 @@ set :format, :pretty
 set :log_level, :debug
 set :pty, true
 set :linked_files, fetch(:linked_files, []).push('config/database.yml')
-set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
-set :default_env, {path: "/opt/ruby/bin:$PATH"}
+#set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
+set :default_env, { path: "/usr/local/bin:$PATH" }
 set :keep_releases, 3
 
 set :default_shell, '/bin/bash -l'
 
 
-set :rbenv_ruby, '2.1.0'
+set :rbenv_ruby, '2.1.2'
 set :bundle_bins, %w("bundle exec")
 set :rvm_map_bins, %w{gem rake ruby bundle}
 set :bundle_roles, :app

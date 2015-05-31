@@ -38,7 +38,8 @@ group :development do
   gem 'capistrano', '~> 3.4.0'
   gem 'capistrano-rails', '~> 1.1.0'
   gem 'capistrano-bundler'
-  gem 'capistrano-rvm', '~> 0.0.3'
+  #gem 'capistrano-rvm', '~> 0.0.3'
+  gem 'rvm1-capistrano3'
   gem 'capistrano3-puma'
 end
 
