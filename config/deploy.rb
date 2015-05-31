@@ -4,7 +4,7 @@ set :rails_env, 'production'
 
 set :user, 'dev'
 set :application, 'activation_call_track'
-set :repo_url, 'github.com:rokibulhassan/ActivationCallTrack.git'
+set :repo_url, 'https://rokibulhassan@github.com/rokibulhassan/ActivationCallTrack.git'
 set :branch, :master
 
 set :deploy_to, "/home/#{fetch(:user)}/#{fetch(:application)}"
@@ -12,8 +12,8 @@ set :scm, :git
 set :format, :pretty
 set :log_level, :debug
 set :pty, true
-# set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
-# set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
+set :linked_files, fetch(:linked_files, []).push('config/database.yml')
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
 set :default_env, {path: "/opt/ruby/bin:$PATH"}
 set :keep_releases, 3
 
