@@ -89,6 +89,7 @@ GEM
     faker (1.4.3)
       i18n (~> 0.5)
     ffi (1.9.8)
+    geocoder (1.2.4)
     grape (0.11.0)
       activesupport
       builder
@@ -265,6 +266,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   faker
+  geocoder
   grape
   haml-rails
   hashie-forbidden_attributes

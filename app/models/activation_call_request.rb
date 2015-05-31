@@ -7,6 +7,9 @@ class ActivationCallRequest < ActiveRecord::Base
   scope :by_imi_number, ->(imi_number) { where(imi_number: imi_number) }
   scope :by_cell_number, ->(cell_number) { where(cell_number: cell_number) }
 
+  reverse_geocoded_by :latitude, :longitude, :address => :address
+  after_validation :reverse_geocode
+
   def requests
     ActivationCallRequest.where('imi_number=? OR cell_number=?', imi_number, cell_number)
   end

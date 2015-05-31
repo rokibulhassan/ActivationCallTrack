@@ -42,3 +42,5 @@ group :development do
   gem 'capistrano-rvm', '~> 0.0.3'
   gem 'capistrano3-puma'
 end
+
+gem 'geocoder'
