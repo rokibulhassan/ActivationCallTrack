@@ -55,9 +55,9 @@ module ActivationCallTrack
         begin
           activation_call_request = ActivationCallRequest.new(imi_number: params[:imi_number], cell_number: params[:cell_number], longitude: params[:longitude], latitude: params[:latitude])
           activation_call_request.save
-          return {:activation_call_request => activation_call_request.as_json, :status => true, :message => "ActivationCallRequest was successfully created."}
+          return {:status => true, :object => activation_call_request.as_json, :message => "ActivationCallRequest was successfully created."}
         rescue Exception => ex
-          return {:activation_call_request => nil, :status => false, :message => "Can not create ActivationCallRequest.", :errors => ex.message}
+          return {:status => false, :object => nil, :message => "Can not create ActivationCallRequest.", :errors => ex.message}
         end
       end
 
@@ -70,7 +70,7 @@ module ActivationCallTrack
         if activation_call_request.present?
           return {status: true, object: activation_call_request.as_json, previously_called: activation_call_request.previously_called?}
         else
-          return {status: false, message: "ActivationCallRequest Not found for id #{params[:id]}"}
+          return {status: false, object: nil, message: "ActivationCallRequest Not found for id #{params[:id]}"}
         end
       end
 
