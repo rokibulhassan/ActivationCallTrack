@@ -1,7 +1,7 @@
 == README
 ===============================API Documentation======================================
  i)  Authentication
-       Method: Post
+       Method: Get
        URL:  http://localhost:3000/api/v1/users/authenticate.json
        Parameters:     email: your@email.com, password: yourpassword
        you will get an authentication token form here.
@@ -14,3 +14,7 @@
  iii) Return all ActivationCallRequest
       Method: Get
       URL: http://localhost:3000/api/v1/activation_call_requests.json?auth_token=your_auth_token
+
+ iii) Return true/false if already enrolled or not
+      Method: Get
+      URL: http://localhost:3000/api/v1/activation_call_requests.json/:id?auth_token=your_auth_token

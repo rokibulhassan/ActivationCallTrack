@@ -3,10 +3,10 @@ ruby '2.1.2'
 gem 'rails', '4.0.2'
 gem 'mysql2'
 
-#group :production do
-#  gem 'pg'
-#  gem 'rails_12factor'
-#end
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
 
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -39,7 +39,7 @@ group :development do
   gem 'capistrano-rails', '~> 1.1.0'
   gem 'capistrano-bundler'
   #gem 'capistrano-rvm', '~> 0.0.3'
-  gem 'rvm1-capistrano3'
+  #gem 'rvm1-capistrano3'
   gem 'capistrano3-puma'
 end
 

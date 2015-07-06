@@ -44,7 +44,7 @@ module ActivationCallTrack
         ActivationCallRequest.all.as_json
       end
 
-      desc "It will create activation_call_requests for corresponding request data"
+      desc "It will create activation_call_requests for corresponding request data."
       params do
         requires :imi_number, :type => String, :desc => "imi_number"
         requires :cell_number, :type => String, :desc => "cell_number"
@@ -60,6 +60,20 @@ module ActivationCallTrack
           return {:activation_call_request => nil, :status => false, :message => "Can not create ActivationCallRequest.", :errors => ex.message}
         end
       end
+
+      desc "Return true/false if already enrolled or not."
+      params do
+        requires :id, :type => Integer, :desc => "id"
+      end
+      get '/:id' do
+        activation_call_request = ActivationCallRequest.where(id: params[:id]).first
+        if activation_call_request.present?
+          return {status: true, object: activation_call_request.as_json, previously_called: activation_call_request.previously_called?}
+        else
+          return {status: false, message: "ActivationCallRequest Not found for id #{params[:id]}"}
+        end
+      end
+
 
     end
 
