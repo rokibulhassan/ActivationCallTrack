@@ -30,9 +30,9 @@ module ActivationCallTrack
       get 'authenticate' do
         user = User.where(:email => params[:email]).first
         if user && user.valid_password?(params[:password])
-          {:user => user.as_json, :status => true, :message => "Authentication Successful."}
+          {:status => true, :object => user.as_json, :message => "Authentication Successful."}
         else
-          {:id => nil, :status => false, :message => "Authentication Failed.", :errors => "Invalid User!"}
+          {:status => false, :message => "Authentication Failed.", :errors => "Invalid User!"}
         end
       end
     end
