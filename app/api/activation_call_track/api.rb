@@ -27,7 +27,7 @@ module ActivationCallTrack
         requires :password, :type => String, :desc => "User password"
       end
 
-      post 'authenticate' do
+      get 'authenticate' do
         user = User.where(:email => params[:email]).first
         if user && user.valid_password?(params[:password])
           {:user => user.as_json, :status => true, :message => "Authentication Successful."}
