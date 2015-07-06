@@ -17,4 +17,4 @@
 
  iii) Return true/false if already enrolled or not
       Method: Get
-      URL: http://localhost:3000/api/v1/activation_call_requests.json/:id?auth_token=your_auth_token
+      URL: http://localhost:3000/api/v1/activation_call_requests/:id.json?auth_token=your_auth_token
