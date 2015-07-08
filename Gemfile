@@ -44,3 +44,4 @@ group :development do
 end
 
 gem 'geocoder'
+gem 'axlsx_rails'

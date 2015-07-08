@@ -37,12 +37,20 @@ class ActivationCallRequestsController < ApplicationController
     respond_with(@activation_call_request)
   end
 
-  private
-    def set_activation_call_request
-      @activation_call_request = ActivationCallRequest.find(params[:id])
+  def download
+    @activation_call_requests = ActivationCallRequest.all
+    respond_to do |format|
+      format.xlsx { render xlsx: 'download', filename: "activation_call_requests.xlsx" }
     end
+  end
 
-    def activation_call_request_params
-      params.require(:activation_call_request).permit(:imi_number, :cell_number, :longitude, :latitude, :attempt, :address, :device_phone_number,:project_name, :team_number, :team_area)
-    end
+
+  private
+  def set_activation_call_request
+    @activation_call_request = ActivationCallRequest.find(params[:id])
+  end
+
+  def activation_call_request_params
+    params.require(:activation_call_request).permit(:imi_number, :cell_number, :longitude, :latitude, :attempt, :address, :device_phone_number, :project_name, :team_number, :team_area)
+  end
 end

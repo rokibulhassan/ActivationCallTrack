@@ -6,7 +6,7 @@
         %thead
           %tr
             %th Date Time
-            %th Imi number
+            %th IMEI
             %th Device Phone Number
             %th Project Name
             %th Team Number
@@ -39,4 +39,7 @@
                 = link_to activation_call_request, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger btn-xs' do
                   <i class='glyphicon glyphicon-trash'></i> Delete
 
-    = link_to 'New Activation call request', new_activation_call_request_path, :class => "btn btn-sm btn-primary"
+    = link_to new_activation_call_request_path, :class => "btn btn-sm btn-primary" do
+      <i class='glyphicon glyphicon-plus'></i> New Activation call request
+    = link_to download_activation_call_requests_path(format: "xlsx"), :class => "btn btn-sm btn-info" do
+      <i class='glyphicon glyphicon-download'></i> Download as Excel

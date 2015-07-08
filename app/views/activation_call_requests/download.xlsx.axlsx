@@ -1,0 +1,11 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "ActivationCallRequests") do |sheet|
+    sheet.add_row ["Date Time","IMEI ","Device Phone Number","Project Name","Team Number","Team Area","Longitude","Latitude","Location","Consumer Number","Previously Called"]
+    @activation_call_requests.each do |acr|
+        sheet.add_row [formatted_datetime(acr.created_at),acr.imi_number,acr.device_phone_number,acr.project_name,acr.team_number,acr.team_area,acr.longitude,acr.latitude,acr.address,acr.cell_number,acr.previously_called? ? 'YES' : 'NO']
+    end
+end
+
+
+
+
