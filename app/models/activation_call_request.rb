@@ -11,11 +11,15 @@ class ActivationCallRequest < ActiveRecord::Base
   after_validation :reverse_geocode
 
   def requests
-    ActivationCallRequest.where('imi_number=? OR cell_number=?', imi_number, cell_number)
+    ActivationCallRequest.where('project_name=?', project_name).where('imi_number=? OR cell_number=?', imi_number, cell_number)
+  end
+
+  def duplicate_requests_count
+    requests.count
   end
 
   def previously_called?
-    requests.count >= 1
+    duplicate_requests_count >= 1
   end
 
   #def requests_exist?
@@ -30,9 +34,13 @@ class ActivationCallRequest < ActiveRecord::Base
   #  requests.last.update_column(:attempt, attempt.to_i+1) if requests_exist?
   #end
 
+  def project_name_str
+    self.project_name.to_s.gsub(' ', '+')
+  end
+
   def send_message
-    msg = 'We+received+your+activation+request.'
-    msg = 'Already+enrolled.' if previously_called?
+    msg = "Congratulations!+Your+are+eligible+to+receive+a+free+sample+of+#{self.project_name_str}"
+    msg = "Already+Registered+in+#{self.project_name_str}" if previously_called?
     url = URI.parse("http://sms.nixtecsys.com/index.php?app=webservices&ta=pv&u=Rajiul.Karim&p=Rajiul123&to=#{self.cell_number}&msg=#{msg}")
     req = Net::HTTP::Get.new(url.to_s)
     res = Net::HTTP.start(url.host, url.port) { |http|
