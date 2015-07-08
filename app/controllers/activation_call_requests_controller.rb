@@ -5,7 +5,7 @@ class ActivationCallRequestsController < ApplicationController
   respond_to :html
 
   def index
-    @activation_call_requests = ActivationCallRequest.all
+    @activation_call_requests = ActivationCallRequest.order_by_date
     respond_with(@activation_call_requests)
   end
 
@@ -38,7 +38,7 @@ class ActivationCallRequestsController < ApplicationController
   end
 
   def download
-    @activation_call_requests = ActivationCallRequest.all
+    @activation_call_requests = ActivationCallRequest.order_by_date
     respond_to do |format|
       format.xlsx { render xlsx: 'download', filename: "activation_call_requests.xlsx" }
     end
