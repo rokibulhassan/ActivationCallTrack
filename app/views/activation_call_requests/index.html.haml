@@ -20,7 +20,7 @@
         %tbody
           - @activation_call_requests.each do |activation_call_request|
             %tr
-              %td= activation_call_request.created_at
+              %td= formatted_datetime(activation_call_request.created_at)
               %td= activation_call_request.imi_number
               %td= activation_call_request.device_phone_number
               %td= activation_call_request.project_name

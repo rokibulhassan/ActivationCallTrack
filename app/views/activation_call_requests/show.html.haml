@@ -3,7 +3,7 @@
   = @activation_call_request.duplicate_requests_count
 %p
   %b Date Time:
-  = @activation_call_request.created_at
+  = formatted_datetime(@activation_call_request.created_at)
 %p
   %b Imi number:
   = @activation_call_request.imi_number
