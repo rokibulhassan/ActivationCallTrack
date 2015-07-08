@@ -50,10 +50,17 @@ module ActivationCallTrack
         requires :cell_number, :type => String, :desc => "cell_number"
         requires :longitude, :type => Float, :desc => "longitude"
         requires :latitude, :type => Float, :desc => "latitude"
+        optional :device_phone_number, :type => String, :desc => "device_phone_number"
+        optional :project_name, :type => String, :desc => "project_name"
+        optional :team_number, :type => String, :desc => "team_number"
+        optional :team_area, :type => String, :desc => "team_area"
       end
       post do
         begin
-          activation_call_request = ActivationCallRequest.new(imi_number: params[:imi_number], cell_number: params[:cell_number], longitude: params[:longitude], latitude: params[:latitude])
+          activation_call_request = ActivationCallRequest.new(imi_number: params[:imi_number], cell_number: params[:cell_number],
+                                                              longitude: params[:longitude], latitude: params[:latitude],
+                                                              device_phone_number: params[:device_phone_number], project_name: params[:project_name],
+                                                              team_number: params[:team_number], team_area: params[:team_area])
           activation_call_request.save
           return {:status => true, :object => activation_call_request.as_json, :message => "ActivationCallRequest was successfully created."}
         rescue Exception => ex

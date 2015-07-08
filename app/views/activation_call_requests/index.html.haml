@@ -5,23 +5,31 @@
       %table.table.table-bordered.table-hover.data-table
         %thead
           %tr
+            %th Date Time
             %th Imi number
-            %th Cell number
+            %th Device Phone Number
+            %th Project Name
+            %th Team Number
+            %th Team Area
             %th Longitude
             %th Latitude
-            %th Attempt
-            %th Address
+            %th Location
+            %th Consumer Number
             %th Previously Called
             %th Actions
         %tbody
           - @activation_call_requests.each do |activation_call_request|
             %tr
+              %td= activation_call_request.created_at
               %td= activation_call_request.imi_number
-              %td= activation_call_request.cell_number
+              %td= activation_call_request.device_phone_number
+              %td= activation_call_request.project_name
+              %td= activation_call_request.team_number
+              %td= activation_call_request.team_area
               %td= activation_call_request.longitude
               %td= activation_call_request.latitude
-              %td= activation_call_request.attempt
               %td= activation_call_request.address
+              %td= activation_call_request.cell_number
               %td= activation_call_request.previously_called? ? 'YES' : 'NO'
               %td
                 = link_to activation_call_request, class: 'btn btn-primary btn-xs' do

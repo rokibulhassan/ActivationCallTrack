@@ -43,6 +43,6 @@ class ActivationCallRequestsController < ApplicationController
     end
 
     def activation_call_request_params
-      params.require(:activation_call_request).permit(:imi_number, :cell_number, :longitude, :latitude, :attempt, :address)
+      params.require(:activation_call_request).permit(:imi_number, :cell_number, :longitude, :latitude, :attempt, :address, :device_phone_number,:project_name, :team_number, :team_area)
     end
 end

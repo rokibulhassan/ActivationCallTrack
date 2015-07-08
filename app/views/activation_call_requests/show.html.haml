@@ -1,11 +1,23 @@
 %p#notice= notice
 
 %p
+  %b Date Time:
+  = @activation_call_request.created_at
+%p
   %b Imi number:
   = @activation_call_request.imi_number
 %p
-  %b Cell number:
-  = @activation_call_request.cell_number
+  %b Device Phone Number:
+  = @activation_call_request.device_phone_number
+%p
+  %b Project Name:
+  = @activation_call_request.project_name
+%p
+  %b Team Number:
+  = @activation_call_request.team_number
+%p
+  %b Team Area:
+  = @activation_call_request.team_area
 %p
   %b Longitude:
   = @activation_call_request.longitude
@@ -13,11 +25,12 @@
   %b Latitude:
   = @activation_call_request.latitude
 %p
-  %b Attempt:
-  = @activation_call_request.attempt
-%p
-  %b Address:
+  %b Location:
   = @activation_call_request.address
+%p
+  %b Consumer number:
+  = @activation_call_request.cell_number
+
 
 = link_to 'Edit', edit_activation_call_request_path(@activation_call_request)
 \|

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150530174520) do
+ActiveRecord::Schema.define(version: 20150708160301) do
 
   create_table "activation_call_requests", force: true do |t|
     t.string   "imi_number"
@@ -22,6 +22,10 @@ ActiveRecord::Schema.define(version: 20150530174520) do
     t.string   "address"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "device_phone_number"
+    t.string   "project_name"
+    t.string   "team_number"
+    t.string   "team_area"
   end
 
   create_table "users", force: true do |t|
