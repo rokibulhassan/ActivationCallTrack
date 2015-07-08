@@ -1,5 +1,6 @@
 class ActivationCallRequestsController < ApplicationController
   before_action :authenticate_user!
+  before_filter :check_if_admin, only: [:download]
   before_action :set_activation_call_request, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -53,4 +54,11 @@ class ActivationCallRequestsController < ApplicationController
   def activation_call_request_params
     params.require(:activation_call_request).permit(:imi_number, :cell_number, :longitude, :latitude, :attempt, :address, :device_phone_number, :project_name, :team_number, :team_area)
   end
+
+  protected
+
+  def check_if_admin
+    redirect_to root_path, notice: 'Only admins allowed!' if signed_in? && !current_user.admin?
+  end
+
 end
