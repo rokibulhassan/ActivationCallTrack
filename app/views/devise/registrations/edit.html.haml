@@ -28,4 +28,17 @@
       .form-group
         = f.label :current_password
         = f.password_field :current_password, class: 'form-control'
+        .form-group
+          = f.label :Permissions
+          %br
+            - User::ROLES.each do |role|
+              .row
+                .col-md-4
+                  - unless role.nil?
+                    = check_box_tag "user[roles][]", role, @user.roles.include?(role), id: role
+                    = h "#{role.try(:humanize)}"
+              %br
+                %br
+            = hidden_field_tag "user[roles][]", ""
+
     = f.submit 'Update', :class => 'button right'

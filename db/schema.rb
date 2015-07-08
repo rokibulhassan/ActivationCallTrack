@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150708160301) do
+ActiveRecord::Schema.define(version: 20150708171530) do
 
   create_table "activation_call_requests", force: true do |t|
     t.string   "imi_number"
@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 20150708160301) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "authentication_token"
+    t.integer  "roles_mask"
+    t.string   "role"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
