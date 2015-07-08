@@ -9,7 +9,7 @@
   ii)  Create ActivationCallRequest
        Method: Post
        URL:  http://localhost:3000/api/v1/activation_call_requests.json?auth_token=your_auth_token
-       Parameters: imi_number: "IMI Number",  cell_number: "01532456547",  longitude: "32.43434565", latitude: "32.43434565"
+       Parameters: imi_number: "IMI Number",  cell_number: "01532456547",  longitude: "32.43434565", latitude: "32.43434565", device_phone_number: "01532456547", project_name: "Project Name", team_number: "Team Number", team_area: "Team Area"
 
  iii) Return all ActivationCallRequest
       Method: Get
