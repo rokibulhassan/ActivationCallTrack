@@ -20,7 +20,7 @@ class ActivationCallRequest < ActiveRecord::Base
   end
 
   def previously_called?
-    duplicate_requests_count >= 1
+    duplicate_requests_count > 1
   end
 
   #def requests_exist?
