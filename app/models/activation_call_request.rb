@@ -12,7 +12,7 @@ class ActivationCallRequest < ActiveRecord::Base
   after_validation :reverse_geocode
 
   def requests
-    ActivationCallRequest.where('project_name=?', project_name).where('imi_number=? OR cell_number=?', imi_number, cell_number)
+    ActivationCallRequest.where('project_name=? AND cell_number=?', project_name, cell_number)
   end
 
   def duplicate_requests_count
