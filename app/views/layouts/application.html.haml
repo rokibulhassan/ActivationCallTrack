@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
-    %title= content_for?(:title) ? yield(:title) : 'Activation Call Tracker'
+    %title= content_for?(:title) ? yield(:title) : 'Watchman'
     %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Activation Call Tracker'}"}
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
