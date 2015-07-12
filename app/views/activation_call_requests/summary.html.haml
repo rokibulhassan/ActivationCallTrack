@@ -1,0 +1,58 @@
+.row
+  .col-lg-12
+    %h1 Activation Call Requests
+    .table-responsive
+      %table.table.table-bordered.table-hover.data-table.datatable
+        %thead
+          %tr
+            %th Date Time
+            %th IMEI
+            %th Device Phone Number
+            %th Project Name
+            %th Team Number
+            %th Team Area
+            %th Longitude
+            %th Latitude
+            %th Location
+            %th Consumer Number
+            %th Previously Called
+            %th Actions
+        %tbody
+          - @activation_call_requests.each do |activation_call_request|
+            %tr
+              %td= formatted_datetime(activation_call_request.created_at)
+              %td= activation_call_request.imi_number
+              %td= activation_call_request.device_phone_number
+              %td= activation_call_request.project_name
+              %td= activation_call_request.team_number
+              %td= activation_call_request.team_area
+              %td= activation_call_request.longitude
+              %td= activation_call_request.latitude
+              %td= activation_call_request.address
+              %td= activation_call_request.cell_number
+              %td= activation_call_request.previously_called? ? 'YES' : 'NO'
+              %td
+                = link_to activation_call_request, class: 'btn btn-primary btn-xs' do
+                  <i class='glyphicon glyphicon-eye-close'></i> Show
+                = link_to edit_activation_call_request_path(activation_call_request), class: 'btn btn-primary btn-xs' do
+                  <i class='glyphicon glyphicon-wrench'></i> Edit
+
+    = link_to new_activation_call_request_path, :class => "btn btn-sm btn-primary" do
+      <i class='glyphicon glyphicon-plus'></i> New Activation call request
+    - if current_user.admin?
+      = link_to download_activation_call_requests_path(format: "xlsx"), :class => "btn btn-sm btn-info" do
+        <i class='glyphicon glyphicon-download'></i> Download as Excel
+
+
+:javascript
+  $('.datatable').DataTable({
+    // ajax: ...,
+    // autoWidth: false,
+    // pagingType: 'full_numbers',
+    // processing: true,
+    // serverSide: true,
+
+    // Optional, if you want full pagination controls.
+    // Check dataTables documentation to learn more about available options.
+    // http://datatables.net/reference/option/pagingType
+  });

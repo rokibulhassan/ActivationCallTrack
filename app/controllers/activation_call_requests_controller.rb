@@ -45,6 +45,11 @@ class ActivationCallRequestsController < ApplicationController
     end
   end
 
+  def summary
+    @activation_call_requests = ActivationCallRequest.order_by_date
+    respond_with(@activation_call_requests)
+  end
+
 
   private
   def set_activation_call_request

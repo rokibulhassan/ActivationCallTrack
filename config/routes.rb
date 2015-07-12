@@ -7,6 +7,7 @@ ActivationCallTracker::Application.routes.draw do
   resources :activation_call_requests do
     collection do
       get :download
+      get :summary
     end
   end
 
