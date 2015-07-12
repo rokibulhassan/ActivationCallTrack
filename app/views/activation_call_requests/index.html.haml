@@ -42,5 +42,5 @@
     = link_to new_activation_call_request_path, :class => "btn btn-sm btn-primary" do
       <i class='glyphicon glyphicon-plus'></i> New Activation call request
     - if current_user.admin?
-      = link_to download_activation_call_requests_path, :class => "btn btn-sm btn-info" do
+      = link_to download_activation_call_requests_path(format: "xlsx"), :class => "btn btn-sm btn-info" do
         <i class='glyphicon glyphicon-download'></i> Download as Excel
