@@ -45,3 +45,5 @@ end
 
 gem 'geocoder'
 gem 'axlsx_rails'
+gem 'kaminari'
+gem 'bootstrap-kaminari-views'

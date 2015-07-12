@@ -6,7 +6,7 @@ class ActivationCallRequestsController < ApplicationController
   respond_to :html
 
   def index
-    @activation_call_requests = ActivationCallRequest.order_by_date
+    @activation_call_requests = ActivationCallRequest.order_by_date.page params[:page]
     respond_with(@activation_call_requests)
   end
 
