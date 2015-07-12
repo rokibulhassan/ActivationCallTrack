@@ -8,6 +8,7 @@ ActivationCallTracker::Application.routes.draw do
     collection do
       get :download
       get :summary
+      get :report
     end
   end
 

@@ -21,3 +21,8 @@
 
 en:
   hello: "Hello world"
+  query_report:
+    filters:
+      project_name: Project Name
+      team_area: Team Area
+      team_number: Team Number

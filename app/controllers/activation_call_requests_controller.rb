@@ -50,6 +50,26 @@ class ActivationCallRequestsController < ApplicationController
     respond_with(@activation_call_requests)
   end
 
+  def report
+    @activation_call_requests = ActivationCallRequest.order_by_date
+    reporter(@activation_call_requests) do
+      filter :project_name, type: :text
+      filter :team_area, type: :text
+      filter :team_number, type: :text
+
+      column(:date_time) { |acr| formatted_datetime(acr.created_at) }
+      column :imi_number
+      column :device_phone_number
+      column :project_name
+      column :team_number
+      column :team_area
+      column :longitude
+      column :latitude
+      column :address
+      column :cell_number
+      column(:previously_called) { |acr| acr.previously_called? ? 'YES' : 'NO' }
+    end
+  end
 
   private
   def set_activation_call_request
