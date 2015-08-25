@@ -52,7 +52,7 @@ class ActivationCallRequestsController < ApplicationController
 
   def report
     @activation_call_requests = ActivationCallRequest.order_by_date
-    reporter(@activation_call_requests) do
+    reporter(@activation_call_requests, per_page: 20) do
       filter :device_phone_number, type: :text
       filter :project_name, type: :text
       filter :team_area, type: :text
