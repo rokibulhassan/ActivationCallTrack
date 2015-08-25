@@ -11,7 +11,7 @@
             %th Project Name
             %th Team Number
             %th Team Area
-            - unless current_user.agency_admin?
+            - if current_user.admin?
               %th Longitude
               %th Latitude
               %th Location
@@ -27,7 +27,7 @@
               %td= activation_call_request.project_name
               %td= activation_call_request.team_number
               %td= activation_call_request.team_area
-              - unless current_user.agency_admin?
+              - if current_user.admin?
                 %td= activation_call_request.longitude
                 %td= activation_call_request.latitude
                 %td= activation_call_request.address

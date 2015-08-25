@@ -23,6 +23,32 @@ en:
   hello: "Hello world"
   query_report:
     filters:
-      project_name: Project Name
-      team_area: Team Area
-      team_number: Team Number
+      device_phone_number:
+        contains: Device Phone Number
+      project_name:
+        contains: Project Name
+      team_area:
+        contains: Team Area
+      team_number:
+        contains: Team Number
+
+  views:
+    links:
+      pdf: PDF
+      csv: Download as CSV
+    labels:
+      email: EMAIL
+  attributes:
+    date_time: Date Time
+    imi_number: IMEI
+    device_phone_number: Device Phone Number
+    project_name: Project Name
+    team_number: Team Number
+    team_area: Team Area
+    longitude: Longitude
+    latitude: Latitude
+    address: Location
+    cell_number: Consumer Number
+    previously_called: Previously Called
+
+

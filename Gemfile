@@ -49,3 +49,4 @@ gem 'kaminari'
 gem 'bootstrap-kaminari-views'
 gem 'jquery-datatables-rails', '~> 3.3.0'
 gem "query_report"
+gem 'jquery-datetimepicker-rails'

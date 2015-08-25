@@ -7,6 +7,8 @@ class ActivationCallRequest < ActiveRecord::Base
   scope :by_imi_number, ->(imi_number) { where(imi_number: imi_number) }
   scope :by_cell_number, ->(cell_number) { where(cell_number: cell_number) }
   scope :order_by_date, -> { order('created_at DESC') }
+  scope :in_between, ->(from, to) { where('created_at >=? and created_at <=?', from, to) }
+
 
   reverse_geocoded_by :latitude, :longitude, :address => :address
   after_validation :reverse_geocode

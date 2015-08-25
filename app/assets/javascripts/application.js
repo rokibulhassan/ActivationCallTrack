@@ -15,4 +15,11 @@
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require turbolinks
+//= require jquery.datetimepicker
+//= require jquery.datetimepicker/init
 //= require_tree .
+
+$('.datetimepicker').datetimepicker();
+
+
+

@@ -53,9 +53,13 @@ class ActivationCallRequestsController < ApplicationController
   def report
     @activation_call_requests = ActivationCallRequest.order_by_date
     reporter(@activation_call_requests) do
+      filter :device_phone_number, type: :text
       filter :project_name, type: :text
       filter :team_area, type: :text
       filter :team_number, type: :text
+      filter :created_at, type: :datetime do |query, from, to|
+        query.in_between(from, to)
+      end
 
       column(:date_time) { |acr| formatted_datetime(acr.created_at) }
       column :imi_number
@@ -63,9 +67,11 @@ class ActivationCallRequestsController < ApplicationController
       column :project_name
       column :team_number
       column :team_area
-      column :longitude
-      column :latitude
-      column :address
+      if current_user.admin?
+        column :longitude
+        column :latitude
+        column :address
+      end
       column :cell_number
       column(:previously_called) { |acr| acr.previously_called? ? 'YES' : 'NO' }
     end
