@@ -11,9 +11,10 @@
             %th Project Name
             %th Team Number
             %th Team Area
-            %th Longitude
-            %th Latitude
-            %th Location
+            - unless current_user.agency_admin?
+              %th Longitude
+              %th Latitude
+              %th Location
             %th Consumer Number
             %th Previously Called
             %th Actions
@@ -26,9 +27,10 @@
               %td= activation_call_request.project_name
               %td= activation_call_request.team_number
               %td= activation_call_request.team_area
-              %td= activation_call_request.longitude
-              %td= activation_call_request.latitude
-              %td= activation_call_request.address
+              - unless current_user.agency_admin?
+                %td= activation_call_request.longitude
+                %td= activation_call_request.latitude
+                %td= activation_call_request.address
               %td= activation_call_request.cell_number
               %td= activation_call_request.previously_called? ? 'YES' : 'NO'
               %td
