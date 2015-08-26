@@ -41,9 +41,9 @@ class ActivationCallRequest < ActiveRecord::Base
   #  requests.last.update_column(:attempt, attempt.to_i+1) if requests_exist?
   #end
 
-  def project_name
-    self.project.try(:name)
-  end
+  # def project_name
+  #   self.project.try(:name)
+  # end
 
   def project_name_str
     self.project_name.to_s.gsub(' ', '+')

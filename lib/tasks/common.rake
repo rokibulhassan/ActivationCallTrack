@@ -22,4 +22,10 @@ namespace :data do
     end
   end
 
+  desc "Reset Project table"
+  task :reset_projects => :environment do
+    Project.delete_all
+  end
+
+
 end
