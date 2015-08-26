@@ -51,7 +51,7 @@ module ActivationCallTrack
         requires :longitude, :type => Float, :desc => "longitude"
         requires :latitude, :type => Float, :desc => "latitude"
         optional :device_phone_number, :type => String, :desc => "device_phone_number"
-        optional :project_name, :type => String, :desc => "project_name"
+        requires :project_name, :type => String, :desc => "project_name"
         optional :team_number, :type => String, :desc => "team_number"
         optional :team_area, :type => String, :desc => "team_area"
       end
