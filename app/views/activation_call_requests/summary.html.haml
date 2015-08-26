@@ -11,6 +11,6 @@
         %tbody
           - @projects.each do |project|
             %tr
-              %td= link_to project.name, report_activation_call_requests_path("q"=>{"project_id_eq"=>project.id})
+              %td= link_to project.name || "Unknown Project", report_activation_call_requests_path("q"=>{"project_id_eq"=>project.id})
               %td= project.total_requests
               %td= project.today_requests
