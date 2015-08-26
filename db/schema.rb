@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150826071402) do
+ActiveRecord::Schema.define(version: 20150826094629) do
 
   create_table "activation_call_requests", force: true do |t|
     t.string   "imi_number"
@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 20150826071402) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "device_phone_number"
-    t.string   "project_name"
     t.string   "team_number"
     t.string   "team_area"
     t.integer  "project_id"
