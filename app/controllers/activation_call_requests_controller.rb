@@ -1,6 +1,7 @@
 class ActivationCallRequestsController < ApplicationController
   before_action :authenticate_user!
   before_filter :check_if_admin, only: [:download]
+  before_action :set_projects, only: [:new, :edit, :create, :update]
   before_action :set_activation_call_request, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -46,17 +47,17 @@ class ActivationCallRequestsController < ApplicationController
   end
 
   def summary
-    @activation_call_requests = ActivationCallRequest.order_by_date
-    respond_with(@activation_call_requests)
+    @projects = Project.order_by_name
   end
 
   def report
     @activation_call_requests = ActivationCallRequest.order_by_date
     reporter(@activation_call_requests, per_page: 20) do
+      filter :project_id, type: :project
+      filter :imi_number, type: :text
       filter :device_phone_number, type: :text
-      filter :project_name, type: :text
-      filter :team_area, type: :text
       filter :team_number, type: :text
+      filter :team_area, type: :text
       filter :created_at, type: :datetime do |query, from, to|
         query.in_between(from, to)
       end
@@ -78,12 +79,16 @@ class ActivationCallRequestsController < ApplicationController
   end
 
   private
+  def set_projects
+    @projects = Project.order_by_name
+  end
+
   def set_activation_call_request
     @activation_call_request = ActivationCallRequest.find(params[:id])
   end
 
   def activation_call_request_params
-    params.require(:activation_call_request).permit(:imi_number, :cell_number, :longitude, :latitude, :attempt, :address, :device_phone_number, :project_name, :team_number, :team_area)
+    params.require(:activation_call_request).permit(:imi_number, :cell_number, :longitude, :latitude, :attempt, :address, :device_phone_number, :project_id, :team_number, :team_area)
   end
 
   protected

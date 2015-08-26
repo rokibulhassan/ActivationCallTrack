@@ -1,5 +1,8 @@
 class ActivationCallRequest < ActiveRecord::Base
 
+  belongs_to :project
+  validates_presence_of :project_id
+
   #validate :validated_already_called
   #before_validation :reset_attempt_count
   after_save :send_message
@@ -8,6 +11,7 @@ class ActivationCallRequest < ActiveRecord::Base
   scope :by_cell_number, ->(cell_number) { where(cell_number: cell_number) }
   scope :order_by_date, -> { order('created_at DESC') }
   scope :in_between, ->(from, to) { where('created_at >=? and created_at <=?', from, to) }
+  scope :by_date, ->(date) { in_between(date.beginning_of_day, date.end_of_day) }
 
 
   reverse_geocoded_by :latitude, :longitude, :address => :address
@@ -36,6 +40,10 @@ class ActivationCallRequest < ActiveRecord::Base
   #def reset_attempt_count
   #  requests.last.update_column(:attempt, attempt.to_i+1) if requests_exist?
   #end
+
+  def project_name
+    self.project.try(:name)
+  end
 
   def project_name_str
     self.project_name.to_s.gsub(' ', '+')

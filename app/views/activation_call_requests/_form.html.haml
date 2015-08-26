@@ -4,7 +4,7 @@
   .form-inputs
     = f.input :imi_number
     = f.input :device_phone_number
-    = f.input :project_name
+    = f.input :project_id, collection: @projects, prompt: "Choose Project"
     = f.input :team_number
     = f.input :team_area
     = f.input :cell_number

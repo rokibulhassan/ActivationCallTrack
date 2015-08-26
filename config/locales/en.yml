@@ -23,6 +23,8 @@ en:
   hello: "Hello world"
   query_report:
     filters:
+      imi_number:
+        contains: IMEI
       device_phone_number:
         contains: Device Phone Number
       project_name:
