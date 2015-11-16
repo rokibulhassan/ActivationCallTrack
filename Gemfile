@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 ruby '2.1.2'
 gem 'rails', '4.0.2'
-gem 'mysql2'
+#gem 'mysql2'
+gem 'pg'
 
 group :production do
-  gem 'pg'
   gem 'rails_12factor'
 end
 

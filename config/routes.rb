@@ -9,6 +9,9 @@ ActivationCallTracker::Application.routes.draw do
       get :download
       get :summary
       get :report
+      get :export
+      get :export_project
+      get :export_user
     end
   end
 

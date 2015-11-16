@@ -42,4 +42,13 @@ class User < ActiveRecord::Base
   def name
     [self.first_name, self.last_name].join(" ")
   end
+
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |call|
+        csv << call.attributes.values_at(*column_names)
+      end
+    end
+  end
 end

@@ -1,5 +1,5 @@
 class ActivationCallRequestsController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   before_filter :check_if_admin, only: [:download]
   before_action :set_projects, only: [:new, :edit, :create, :update]
   before_action :set_activation_call_request, only: [:show, :edit, :update, :destroy]
@@ -75,6 +75,24 @@ class ActivationCallRequestsController < ApplicationController
       end
       column :cell_number
       column(:previously_called) { |acr| acr.previously_called? ? 'YES' : 'NO' }
+    end
+  end
+
+  def export
+    respond_to do |format|
+      format.csv { send_data ActivationCallRequest.to_csv, filename: "call_tracker.csv" }
+    end
+  end
+
+  def export_project
+    respond_to do |format|
+      format.csv { send_data Project.to_csv, filename: "project.csv" }
+    end
+  end
+
+  def export_user
+    respond_to do |format|
+      format.csv { send_data User.to_csv, filename: "user.csv" }
     end
   end
 
