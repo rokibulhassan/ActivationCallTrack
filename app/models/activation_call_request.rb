@@ -52,7 +52,8 @@ class ActivationCallRequest < ActiveRecord::Base
   def send_message
     msg = "Congratulations!+Your+are+eligible+to+receive+a+free+sample+of+#{self.project_name_str}"
     msg = "Already+Registered+in+#{self.project_name_str}" if previously_called?
-    url = URI.parse("http://sms.nixtecsys.com/index.php?app=webservices&ta=pv&u=Rajiul.Karim&p=Rajiul123&to=#{self.cell_number}&msg=#{msg}")
+    # url = URI.parse("http://sms.nixtecsys.com/index.php?app=webservices&ta=pv&u=Rajiul.Karim&p=Rajiul123&to=#{self.cell_number}&msg=#{msg}")
+    url = URI.parse("https://bplboxservice.banglaphone.net.bd/httpapi/sendsms?userId=miniaturesm&password=Dhaka1212&smsText=#{msg}&commaSeperatedReceiverNumbers=#{self.cell_number}")
     req = Net::HTTP::Get.new(url.to_s)
     res = Net::HTTP.start(url.host, url.port) { |http|
       http.request(req)
