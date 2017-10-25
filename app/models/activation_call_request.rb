@@ -57,7 +57,7 @@ class ActivationCallRequest < ActiveRecord::Base
       http.request(req)
     }
     result = JSON.parse(res.body)
-    self.address = result['results'][0]['formatted_address']
+    self.address = result['results'][0]['formatted_address'] rescue ""
   end
 
   def project_name
@@ -69,9 +69,9 @@ class ActivationCallRequest < ActiveRecord::Base
   end
 
   def send_message
-    return if previously_called?
+    # return if previously_called?
     mobile_number = self.cell_number.gsub(/\+/, '')
-    msg = "Congratulations! #{self.secret_code} code ti #{self.project_name_str} activation BP ke dekhiye apnar jar ti bujhe nin. Next time Unilever apnar sathe contact korte pare."
+    msg = "Congratulations!+#{self.secret_code}+code+ti+#{self.project_name_str}+activation+BP+ke+dekhiye+apnar+jar+ti+bujhe+nin.+Next+time+Unilever+apnar+sathe+contact+korte+pare."
     # msg = "Already+Registered+in+#{self.project_name_str}" if previously_called?
     # url = URI.parse("http://sms.nixtecsys.com/index.php?app=webservices&ta=pv&u=Rajiul.Karim&p=Rajiul123&to=#{self.cell_number}&msg=#{msg}")
     url = URI.parse("http://powersms.banglaphone.net.bd/httpapi/sendsms?userId=miniaturesm&password=Dhaka1212&smsText=#{msg}&commaSeperatedReceiverNumbers=#{mobile_number}")
