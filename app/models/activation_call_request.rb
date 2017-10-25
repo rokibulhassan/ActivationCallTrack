@@ -6,7 +6,7 @@ class ActivationCallRequest < ActiveRecord::Base
   #validate :validated_already_called
   #before_validation :reset_attempt_count
   after_save :send_message
-  before_create :set_address
+  before_create :set_address, :set_secret_code
 
   scope :by_imi_number, ->(imi_number) { where(imi_number: imi_number) }
   scope :by_cell_number, ->(cell_number) { where(cell_number: cell_number) }
@@ -17,6 +17,13 @@ class ActivationCallRequest < ActiveRecord::Base
 
   # reverse_geocoded_by :latitude, :longitude, :address => :address
   # after_validation :reverse_geocode
+
+  def set_secret_code
+    self.secret_code = loop do
+      token = rand(36**15).to_s(36)
+      break token unless ActivationCallRequest.exists?(secret_code: token)
+    end
+  end
 
   def requests
     ActivationCallRequest.where('project_id=? AND cell_number=?', project_id, cell_number)
@@ -62,9 +69,10 @@ class ActivationCallRequest < ActiveRecord::Base
   end
 
   def send_message
+    return if previously_called?
     mobile_number = self.cell_number.gsub(/\+/, '')
-    msg = "Congratulations!+Your+are+eligible+to+receive+a+free+sample+of+#{self.project_name_str}"
-    msg = "Already+Registered+in+#{self.project_name_str}" if previously_called?
+    msg = "Congratulations! #{self.secret_code} code ti #{self.project_name_str} activation BP ke dekhiye apnar jar ti bujhe nin. Next time Unilever apnar sathe contact korte pare."
+    # msg = "Already+Registered+in+#{self.project_name_str}" if previously_called?
     # url = URI.parse("http://sms.nixtecsys.com/index.php?app=webservices&ta=pv&u=Rajiul.Karim&p=Rajiul123&to=#{self.cell_number}&msg=#{msg}")
     url = URI.parse("http://powersms.banglaphone.net.bd/httpapi/sendsms?userId=miniaturesm&password=Dhaka1212&smsText=#{msg}&commaSeperatedReceiverNumbers=#{mobile_number}")
     req = Net::HTTP::Get.new(url.to_s)

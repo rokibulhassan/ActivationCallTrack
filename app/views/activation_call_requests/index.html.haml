@@ -12,6 +12,7 @@
             %th Team Number
             %th Team Area
             - if current_user.admin?
+              %th Secret Code
               %th Longitude
               %th Latitude
               %th Location
@@ -28,6 +29,7 @@
               %td= activation_call_request.team_number
               %td= activation_call_request.team_area
               - if current_user.admin?
+                %td= activation_call_request.secret_code
                 %td= activation_call_request.longitude
                 %td= activation_call_request.latitude
                 %td= activation_call_request.address
