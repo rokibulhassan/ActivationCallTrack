@@ -6,6 +6,7 @@ class ActivationCallRequest < ActiveRecord::Base
   #validate :validated_already_called
   #before_validation :reset_attempt_count
   after_save :send_message
+  before_create :set_address
 
   scope :by_imi_number, ->(imi_number) { where(imi_number: imi_number) }
   scope :by_cell_number, ->(cell_number) { where(cell_number: cell_number) }
@@ -40,6 +41,17 @@ class ActivationCallRequest < ActiveRecord::Base
   #def reset_attempt_count
   #  requests.last.update_column(:attempt, attempt.to_i+1) if requests_exist?
   #end
+
+  def set_address
+    url = URI.parse("http://maps.googleapis.com/maps/api/geocode/json?latlng=#{self.latitude},#{self.longitude}&sensor=true")
+    req = Net::HTTP::Get.new(url.to_s)
+    req.use_ssl = true if url.scheme == 'https'
+    res = Net::HTTP.start(url.host, url.port) { |http|
+      http.request(req)
+    }
+    result = JSON.parse(res.body)
+    self.address = result['results'][0]['formatted_address']
+  end
 
   def project_name
     self.project.try(:name)
