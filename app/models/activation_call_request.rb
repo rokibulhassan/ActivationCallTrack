@@ -14,8 +14,8 @@ class ActivationCallRequest < ActiveRecord::Base
   scope :by_date, ->(date) { in_between(date.beginning_of_day, date.end_of_day) }
 
 
-  reverse_geocoded_by :latitude, :longitude, :address => :address
-  after_validation :reverse_geocode
+  # reverse_geocoded_by :latitude, :longitude, :address => :address
+  # after_validation :reverse_geocode
 
   def requests
     ActivationCallRequest.where('project_id=? AND cell_number=?', project_id, cell_number)
@@ -59,6 +59,7 @@ class ActivationCallRequest < ActiveRecord::Base
     res = Net::HTTP.start(url.host, url.port) { |http|
       http.request(req)
     }
+    logger.info "Send sms >>>>> #{res.body}"
   end
 
   def self.to_csv(options = {})
