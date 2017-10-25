@@ -20,7 +20,7 @@ class ActivationCallRequest < ActiveRecord::Base
 
   def set_secret_code
     self.secret_code = loop do
-      token = rand(36**15).to_s(36)
+      token = rand(36**5).to_s(36).upcase
       break token unless ActivationCallRequest.exists?(secret_code: token)
     end
   end
