@@ -79,7 +79,6 @@ class ActivationCallRequest < ActiveRecord::Base
     res = Net::HTTP.start(url.host, url.port) { |http|
       http.request(req)
     }
-    logger.info "Send sms >>>>> #{res.body}"
   end
 
   def self.to_csv(options = {})
