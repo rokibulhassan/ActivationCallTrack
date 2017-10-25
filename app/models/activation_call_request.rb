@@ -69,7 +69,7 @@ class ActivationCallRequest < ActiveRecord::Base
   end
 
   def send_message
-    mobile_number = self.cell_number.gsub(/\+/, '')
+    mobile_number = self.cell_number.gsub(/\+/, '').strip
     msg = "Congratulations!+#{self.secret_code}+code+ti+#{self.project_name_str}+activation+BP+ke+dekhiye+apnar+jar+ti+bujhe+nin.+Next+time+Unilever+apnar+sathe+contact+korte+pare."
     msg = "Already+Registered+in+#{self.project_name_str}" if previously_called?
     # url = URI.parse("http://sms.nixtecsys.com/index.php?app=webservices&ta=pv&u=Rajiul.Karim&p=Rajiul123&to=#{self.cell_number}&msg=#{msg}")
