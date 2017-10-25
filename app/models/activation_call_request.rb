@@ -20,7 +20,7 @@ class ActivationCallRequest < ActiveRecord::Base
 
   def set_secret_code
     self.secret_code = loop do
-      token = rand(36**5).to_s(36).upcase
+      token = rand(36**6).to_s(36).upcase
       break token unless ActivationCallRequest.exists?(secret_code: token)
     end
   end
@@ -69,10 +69,9 @@ class ActivationCallRequest < ActiveRecord::Base
   end
 
   def send_message
-    # return if previously_called?
     mobile_number = self.cell_number.gsub(/\+/, '')
     msg = "Congratulations!+#{self.secret_code}+code+ti+#{self.project_name_str}+activation+BP+ke+dekhiye+apnar+jar+ti+bujhe+nin.+Next+time+Unilever+apnar+sathe+contact+korte+pare."
-    # msg = "Already+Registered+in+#{self.project_name_str}" if previously_called?
+    msg = "Already+Registered+in+#{self.project_name_str}" if previously_called?
     # url = URI.parse("http://sms.nixtecsys.com/index.php?app=webservices&ta=pv&u=Rajiul.Karim&p=Rajiul123&to=#{self.cell_number}&msg=#{msg}")
     url = URI.parse("http://powersms.banglaphone.net.bd/httpapi/sendsms?userId=miniaturesm&password=Dhaka1212&smsText=#{msg}&commaSeperatedReceiverNumbers=#{mobile_number}")
     req = Net::HTTP::Get.new(url.to_s)
