@@ -57,7 +57,7 @@ class ActivationCallRequest < ActiveRecord::Base
       http.request(req)
     }
     result = JSON.parse(res.body)
-    self.address = result['results'][0]['formatted_address'] rescue ""
+    self.address = result['results'][0]['formatted_address'] rescue "Not Found"
   end
 
   def project_name
