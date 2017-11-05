@@ -73,6 +73,7 @@ class ActivationCallRequest < ActiveRecord::Base
   end
 
   def send_message
+    return true if previously_called?
     mobile_number = self.cell_number.gsub(/\+/, '').strip
     msg = "Congratulations!+#{self.secret_code}-#{self.sms_sending_time}+code+ti+#{self.project_name_str}+activation+BP+ke+dekhiye+apnar+jar+ti+bujhe+nin.+Next+time+Unilever+apnar+sathe+contact+korte+pare."
     # msg = "Already+Registered+in+#{self.project_name_str}" if previously_called?
