@@ -69,7 +69,7 @@ class ActivationCallRequest < ActiveRecord::Base
   end
 
   def sms_sending_time
-    DateTime.now.strftime("%b %d, %I:%M %p")
+    DateTime.now.strftime("%b+%d,+%I:%M+%p")
   end
 
   def send_message
