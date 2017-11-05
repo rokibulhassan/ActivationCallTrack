@@ -68,10 +68,14 @@ class ActivationCallRequest < ActiveRecord::Base
     self.project_name.to_s.gsub(' ', '+')
   end
 
+  def sms_sending_time
+    DateTime.now.strftime("%b %d, %I:%M %p")
+  end
+
   def send_message
     mobile_number = self.cell_number.gsub(/\+/, '').strip
-    msg = "Congratulations!+#{self.secret_code}+code+ti+#{self.project_name_str}+activation+BP+ke+dekhiye+apnar+jar+ti+bujhe+nin.+Next+time+Unilever+apnar+sathe+contact+korte+pare."
-    msg = "Already+Registered+in+#{self.project_name_str}" if previously_called?
+    msg = "Congratulations!+#{self.secret_code}-#{self.sms_sending_time}+code+ti+#{self.project_name_str}+activation+BP+ke+dekhiye+apnar+jar+ti+bujhe+nin.+Next+time+Unilever+apnar+sathe+contact+korte+pare."
+    # msg = "Already+Registered+in+#{self.project_name_str}" if previously_called?
     # url = URI.parse("http://sms.nixtecsys.com/index.php?app=webservices&ta=pv&u=Rajiul.Karim&p=Rajiul123&to=#{self.cell_number}&msg=#{msg}")
     url = URI.parse("http://powersms.banglaphone.net.bd/httpapi/sendsms?userId=miniaturesm&password=Dhaka1212&smsText=#{msg}&commaSeperatedReceiverNumbers=#{mobile_number}")
     req = Net::HTTP::Get.new(url.to_s)
